@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>SQL Notes - DBMS Quick Revision</title>
+<title>SQL Quick Interview Notes</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
 <style>
   body {
@@ -33,7 +33,7 @@
     font-weight: 600;
     font-size: 1.4rem;
     margin-top: 2.5rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.6rem;
     border-left: 4px solid #805ad5;
     padding-left: 0.8rem;
     color: #3c3c3c;
@@ -44,117 +44,193 @@
     border-radius: 6px;
     overflow-x: auto;
   }
+  p {
+    font-size: 1rem;
+    margin: 0.4rem 0 0.8rem;
+    color: #555;
+  }
   code {
     font-family: 'Fira Code', monospace;
   }
-  p, ul {
-    font-size: 1.05rem;
-    color: #444;
+  /* Flashcard grid styling */
+  .flashcards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
   }
-  ul {
-    list-style: none;
-    padding-left: 0;
+  .flashcard {
+    background: #fdfdfd;
+    border-left: 4px solid #805ad5;
+    border-radius: 6px;
+    padding: 1rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
   }
-  li {
-    margin-bottom: 1rem;
-  }
-  strong {
-    color: #242424;
+  .flashcard strong {
+    color: #222;
+    display: block;
+    margin-bottom: 0.3rem;
   }
 </style>
 </head>
 <body>
   <main class="page">
-    <h1>📚 DBMS Basic Queries – Quick Revision</h1>
+    <h1>📚 SQL Quick Notes</h1>
+
+   <!-- Place right after <h1>... -->
+
+<!-- Simple "Flowchart" For DB Types & Examples -->
+<div style="margin: 2rem 0 2rem 0; padding: 2rem 1rem; background: #fbfbff; border-radius: 8px;">
+  <h2 style="margin-top:0;">📊 Flowchart – DB Concepts & Types</h2>
+  <div style="display:flex; flex-direction:column; align-items:center; gap:1.5rem;">
+
+    <!-- Database & DBMS -->
+    <div style="display:flex; gap:2rem; align-items:center;">
+      <div style="background:#f5f5f5; border-left:4px solid #805ad5; padding:1rem 1.5rem; border-radius:6px;">
+        <strong>Database</strong><br>
+        Stores organized data
+      </div>
+      <span style="font-size:2rem;">→</span>
+      <div style="background:#f5f5f5; border-left:4px solid #805ad5; padding:1rem 1.5rem; border-radius:6px;">
+        <strong>DBMS</strong><br>
+        Software manages databases
+      </div>
+    </div>
+
+    <!-- Types of DBs -->
+    <div style="display:flex; gap:2rem; align-items:stretch; margin-top:1.5rem;">
+      <div style="background:#e6f7ff; border-left:4px solid #2185d0; padding:1rem 1rem; border-radius:6px; flex:1;">
+        <strong>Relational (SQL)</strong><br>
+        Table-based<br>
+        <em>Example: MySQL, PostgreSQL</em>
+      </div>
+      <span style="font-size:2rem;">→</span>
+      <div style="background:#fffbe6; border-left:4px solid #ffd43b; padding:1rem 1rem; border-radius:6px; flex:2;">
+        <strong>Non-Relational (NoSQL)</strong><br>
+        <ul style="margin:0; padding-left:1.1em;">
+          <li>Document – <em>MongoDB</em></li>
+          <li>Key-Value – <em>Redis</em></li>
+          <li>Column – <em>Cassandra</em></li>
+          <li>Graph – <em>Neo4j</em></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Flashcards Section (You already have this for definitions, so just add: ) -->
+
+<h2>📑 Flashcards – SQL Instruction Types</h2>
+<div class="flashcards">
+  <div class="flashcard">
+    <strong>DDL</strong>
+    <div>Data Definition Language – defines or modifies structure (CREATE, ALTER, DROP).</div>
+  </div>
+  <div class="flashcard">
+    <strong>DML</strong>
+    <div>Data Manipulation Language – modifies data itself (INSERT, UPDATE, DELETE).</div>
+  </div>
+  <div class="flashcard">
+    <strong>DQL</strong>
+    <div>Data Query Language – retrieves/query data (SELECT).</div>
+  </div>
+  <div class="flashcard">
+    <strong>DCL</strong>
+    <div>Data Control Language – controls access (GRANT, REVOKE).</div>
+  </div>
+  <div class="flashcard">
+    <strong>TCL</strong>
+    <div>Transaction Control Language – manages transactions (COMMIT, ROLLBACK).</div>
+  </div>
+</div>
+
+
+    <h2>Note</h2>
+    <p>Row/Record & Column/Field</p>
 
     <h2>1️⃣ Use a Database</h2>
-    <pre><code class="language-sql">USE schoolDB;
-</code></pre>
+    <p>Switch to a specific database to work with.</p>
+    <pre><code class="language-sql">USE database_name;</code></pre>
 
-    <h2>2️⃣ Create Table with Primary &amp; Foreign Keys</h2>
-    <pre><code class="language-sql">CREATE TABLE Classes (
-    ClassId INT PRIMARY KEY,
-    Topic NVARCHAR(50) NOT NULL,
-    TeacherId INT,
-    FOREIGN KEY (TeacherId) REFERENCES Teachers (TeacherId)
-);
-</code></pre>
+    <h2>2️⃣ Create Table with Primary & Foreign Keys</h2>
+    <p>Create a table with primary key and optionally link it to another table (foreign key).</p>
+    <pre><code class="language-sql">CREATE TABLE table_name (
+    column1 datatype PRIMARY KEY,
+    column2 datatype NOT NULL,
+    column3 datatype,
+    FOREIGN KEY (column3) REFERENCES other_table (other_column)
+);</code></pre>
 
     <h2>3️⃣ Insert Data</h2>
-    <pre><code class="language-sql">INSERT INTO Students VALUES (4, 'Aruna', 'Rajasekhar', 51, 'F');
-INSERT INTO Teachers VALUES (1, 'Aruna', 'Finance');
-INSERT INTO Classes VALUES (6, '6B', NULL);
-</code></pre>
+    <p>Add one or more rows into a table.</p>
+    <pre><code class="language-sql">INSERT INTO table_name (column1, column2, ...)
+VALUES (value1, value2, ...);</code></pre>
 
-    <h2>4️⃣ Update a Record (Row)</h2>
-    <pre><code class="language-sql">UPDATE Students
-SET Age = 14
-WHERE StudentId = 3;
-</code></pre>
+    <h2>4️⃣ Update a Record</h2>
+    <p>Modify existing records in a table.</p>
+    <pre><code class="language-sql">UPDATE table_name
+SET column_name = new_value
+WHERE condition;</code></pre>
 
-    <h2>5️⃣ Alter Table (Structure Changes)</h2>
-    <p><strong>Add a Column</strong></p>
-    <pre><code class="language-sql">ALTER TABLE Students
-ADD Gmail VARCHAR(15);
-</code></pre>
-    <p><strong>Change Column Data Type</strong></p>
-    <pre><code class="language-sql">ALTER TABLE Students
-ALTER COLUMN Gmail NVARCHAR(15);
-</code></pre>
-    <p><strong>Drop a Column</strong></p>
-    <pre><code class="language-sql">ALTER TABLE Students
-DROP COLUMN Gmail;
-</code></pre>
+    <h2>5️⃣ Alter Table (Modify Structure)</h2>
+    <p><strong>Add Column:</strong></p>
+    <pre><code class="language-sql">ALTER TABLE table_name
+ADD column_name datatype;</code></pre>
 
-    <h2>6️⃣ Add a Column with Foreign Key</h2>
-    <pre><code class="language-sql">ALTER TABLE Students
-ADD ClassId INT,
-FOREIGN KEY (ClassId) REFERENCES Classes (ClassId);
-</code></pre>
+    <p><strong>Modify Column Data Type:</strong></p>
+    <pre><code class="language-sql">ALTER TABLE table_name
+ALTER COLUMN column_name new_datatype;</code></pre>
 
-    <h2>7️⃣ Rename a Column (SQL Server)</h2>
-    <pre><code class="language-sql">EXEC sp_rename 'Students.Gmail', 'Email', 'COLUMN';
-</code></pre>
+    <p><strong>Drop Column:</strong></p>
+    <pre><code class="language-sql">ALTER TABLE table_name
+DROP COLUMN column_name;</code></pre>
+
+    <h2>6️⃣ Add Column with Foreign Key</h2>
+    <p>Add a column and link it as foreign key to another table.</p>
+    <pre><code class="language-sql">ALTER TABLE table_name
+ADD column_name datatype,
+FOREIGN KEY (column_name) REFERENCES other_table (other_column);</code></pre>
+
+    <h2>7️⃣ Rename Column (SQL Server)</h2>
+    <p>Change the name of an existing column.</p>
+    <pre><code class="language-sql">EXEC sp_rename 'table_name.old_column', 'new_column', 'COLUMN';</code></pre>
 
     <h2>8️⃣ Select Queries</h2>
-    <p><strong>Filter by Value</strong></p>
-    <pre><code class="language-sql">SELECT * FROM Students
-WHERE FirstName = 'Pooh';
-</code></pre>
-    <p><strong>Select Specific Columns</strong></p>
-    <pre><code class="language-sql">SELECT StudentId, Age FROM Students;
-</code></pre>
+    <p><strong>Filter by Value:</strong></p>
+    <pre><code class="language-sql">SELECT * FROM table_name
+WHERE column_name = value;</code></pre>
+
+    <p><strong>Select Specific Columns:</strong></p>
+    <pre><code class="language-sql">SELECT column1, column2 FROM table_name;</code></pre>
 
     <h2>9️⃣ Sorting Data</h2>
+    <p>Order results in ascending or descending order.</p>
     <pre><code class="language-sql">-- Ascending
-SELECT * FROM Students
-ORDER BY StudentId ASC;
+SELECT * FROM table_name
+ORDER BY column_name ASC;
 
 -- Descending
-SELECT * FROM Students
-ORDER BY StudentId DESC;
-</code></pre>
+SELECT * FROM table_name
+ORDER BY column_name DESC;</code></pre>
 
     <h2>🔟 View All Records</h2>
-    <pre><code class="language-sql">SELECT * FROM Students;
-SELECT * FROM Teachers;
-SELECT * FROM Classes;
-</code></pre>
+    <p>Retrieve all rows from a table.</p>
+    <pre><code class="language-sql">SELECT * FROM table_name;</code></pre>
 
     <h2>1️⃣1️⃣ Aggregations</h2>
-    <pre><code class="language-sql">SELECT COUNT(*) AS TotalRecords FROM Students;
-SELECT AVG(Age) AS AverageAge FROM Students;
-SELECT MIN(Age) AS MinAge FROM Students;
-SELECT MAX(Age) AS MaxAge FROM Students;
-SELECT SUM(Age) AS SumAges FROM Students;
-</code></pre>
+    <p>Perform calculations on values in a column.</p>
+    <pre><code class="language-sql">SELECT COUNT(*) FROM table_name;
+SELECT AVG(column_name) FROM table_name;
+SELECT MIN(column_name) FROM table_name;
+SELECT MAX(column_name) FROM table_name;
+SELECT SUM(column_name) FROM table_name;</code></pre>
 
-    <h2>✅ Tip</h2>
-    <ul>
-      <li>Use <code>--</code> for single-line comments.</li>
-      <li>Use <code>/* ... */</code> for multi-line comments.</li>
-    </ul>
+    <h2>✅ Tips</h2>
+    <p>-- : Single-line comments</p>
+    <p>/* ... */ : Multi-line comments</p>
+    
   </main>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"></script>
 </body>
