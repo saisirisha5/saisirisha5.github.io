@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SQL Notes - DBMS Quick Revision</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+<style>
+  body {
+    margin: 0;
+    background: #f7f8fa;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    color: #1c1c1e;
+    line-height: 1.6;
+    padding: 3rem 1rem;
+    display: flex;
+    justify-content: center;
+  }
+  .page {
+    width: 900px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.03), 0 0 1px rgba(0,0,0,0.07);
+    padding: 2rem 3rem;
+  }
+  h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 0.5em;
+    color: #111;
+  }
+  h2 {
+    font-weight: 600;
+    font-size: 1.4rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    border-left: 4px solid #805ad5;
+    padding-left: 0.8rem;
+    color: #3c3c3c;
+  }
+  pre {
+    background: #f5f5f5;
+    padding: 1rem;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  code {
+    font-family: 'Fira Code', monospace;
+  }
+  p, ul {
+    font-size: 1.05rem;
+    color: #444;
+  }
+  ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  li {
+    margin-bottom: 1rem;
+  }
+  strong {
+    color: #242424;
+  }
+</style>
+</head>
+<body>
+  <main class="page">
+    <h1>📚 DBMS Basic Queries – Quick Revision</h1>
+
+    <h2>1️⃣ Use a Database</h2>
+    <pre><code class="language-sql">USE schoolDB;
+</code></pre>
+
+    <h2>2️⃣ Create Table with Primary &amp; Foreign Keys</h2>
+    <pre><code class="language-sql">CREATE TABLE Classes (
+    ClassId INT PRIMARY KEY,
+    Topic NVARCHAR(50) NOT NULL,
+    TeacherId INT,
+    FOREIGN KEY (TeacherId) REFERENCES Teachers (TeacherId)
+);
+</code></pre>
+
+    <h2>3️⃣ Insert Data</h2>
+    <pre><code class="language-sql">INSERT INTO Students VALUES (4, 'Aruna', 'Rajasekhar', 51, 'F');
+INSERT INTO Teachers VALUES (1, 'Aruna', 'Finance');
+INSERT INTO Classes VALUES (6, '6B', NULL);
+</code></pre>
+
+    <h2>4️⃣ Update a Record (Row)</h2>
+    <pre><code class="language-sql">UPDATE Students
+SET Age = 14
+WHERE StudentId = 3;
+</code></pre>
+
+    <h2>5️⃣ Alter Table (Structure Changes)</h2>
+    <p><strong>Add a Column</strong></p>
+    <pre><code class="language-sql">ALTER TABLE Students
+ADD Gmail VARCHAR(15);
+</code></pre>
+    <p><strong>Change Column Data Type</strong></p>
+    <pre><code class="language-sql">ALTER TABLE Students
+ALTER COLUMN Gmail NVARCHAR(15);
+</code></pre>
+    <p><strong>Drop a Column</strong></p>
+    <pre><code class="language-sql">ALTER TABLE Students
+DROP COLUMN Gmail;
+</code></pre>
+
+    <h2>6️⃣ Add a Column with Foreign Key</h2>
+    <pre><code class="language-sql">ALTER TABLE Students
+ADD ClassId INT,
+FOREIGN KEY (ClassId) REFERENCES Classes (ClassId);
+</code></pre>
+
+    <h2>7️⃣ Rename a Column (SQL Server)</h2>
+    <pre><code class="language-sql">EXEC sp_rename 'Students.Gmail', 'Email', 'COLUMN';
+</code></pre>
+
+    <h2>8️⃣ Select Queries</h2>
+    <p><strong>Filter by Value</strong></p>
+    <pre><code class="language-sql">SELECT * FROM Students
+WHERE FirstName = 'Pooh';
+</code></pre>
+    <p><strong>Select Specific Columns</strong></p>
+    <pre><code class="language-sql">SELECT StudentId, Age FROM Students;
+</code></pre>
+
+    <h2>9️⃣ Sorting Data</h2>
+    <pre><code class="language-sql">-- Ascending
+SELECT * FROM Students
+ORDER BY StudentId ASC;
+
+-- Descending
+SELECT * FROM Students
+ORDER BY StudentId DESC;
+</code></pre>
+
+    <h2>🔟 View All Records</h2>
+    <pre><code class="language-sql">SELECT * FROM Students;
+SELECT * FROM Teachers;
+SELECT * FROM Classes;
+</code></pre>
+
+    <h2>1️⃣1️⃣ Aggregations</h2>
+    <pre><code class="language-sql">SELECT COUNT(*) AS TotalRecords FROM Students;
+SELECT AVG(Age) AS AverageAge FROM Students;
+SELECT MIN(Age) AS MinAge FROM Students;
+SELECT MAX(Age) AS MaxAge FROM Students;
+SELECT SUM(Age) AS SumAges FROM Students;
+</code></pre>
+
+    <h2>✅ Tip</h2>
+    <ul>
+      <li>Use <code>--</code> for single-line comments.</li>
+      <li>Use <code>/* ... */</code> for multi-line comments.</li>
+    </ul>
+  </main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"></script>
+</body>
+</html>

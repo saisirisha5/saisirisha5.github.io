@@ -3,17 +3,12 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>AI-Driven Real-Time Attendance Monitoring System - Notion Style</title>
+<title>Sirisha's Notes & Projects</title>
 <style>
-  /* Notion-like white page styling */
   body {
     margin: 0;
     background: #f7f8fa;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
-    color: #1c1c1e;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
     padding: 3rem 1rem;
     display: flex;
     justify-content: center;
@@ -22,173 +17,43 @@
     width: 750px;
     background: white;
     border-radius: 8px;
-    box-shadow:
-      0 0 10px rgba(0,0,0,0.03),
-      0 0 1px rgba(0,0,0,0.07);
-    padding: 2rem 3rem 4rem 3rem;
+    box-shadow: 0 0 10px rgba(0,0,0,0.03), 0 0 1px rgba(0,0,0,0.07);
+    padding: 2rem 3rem;
   }
   h1 {
-    font-size: 2.75rem;
-    font-weight: 700;
-    margin-bottom: 0.15em;
-    color: #111111;
-  }
-  h2 {
-    font-weight: 600;
-    font-size: 1.8rem;
-    margin-top: 3.5rem;
-    margin-bottom: 1rem;
-    border-left: 4px solid #805ad5;
-    padding-left: 0.8rem;
-    color: #3c3c3c;
-  }
-  p, ul {
-    font-size: 1.13rem;
-    color: #444444;
-    margin: 0 0 1.25rem 0;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: #111;
   }
   ul {
     list-style: none;
     padding-left: 0;
   }
-  ul li {
-    position: relative;
-    padding-left: 2.4rem;
+  li {
     margin-bottom: 1rem;
   }
-  ul li::before {
-    position: absolute;
-    left: 0;
-    top: 0;
-    content: attr(data-emoji);
-    font-size: 1.4rem;
-    line-height: 1;
+  a {
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: #4a4a4a;
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    transition: background 0.2s ease;
   }
-  strong {
-    color: #242424;
-  }
-  /* Subtle fade-in animation on scroll */
-  .fade-in-section {
-    opacity: 0;
-    transform: translateY(35px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-    will-change: opacity, transform;
-  }
-  .fade-in-section.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  /* Responsive */
-  @media (max-width: 800px) {
-    .page {
-      width: 90vw;
-      padding: 2rem 1.5rem 3rem 1.5rem;
-    }
-    h1 {
-      font-size: 2rem;
-    }
-    h2 {
-      font-size: 1.4rem;
-      margin-top: 2.5rem;
-      margin-bottom: 0.9rem;
-    }
-    ul li {
-      font-size: 1rem;
-      margin-bottom: 0.8rem;
-      padding-left: 2rem;
-    }
-    ul li::before {
-      font-size: 1.2rem;
-    }
+  a:hover {
+    background: #f0f0f0;
   }
 </style>
 </head>
 <body>
   <main class="page">
-    <h1>AI-Driven Real-Time Attendance Monitoring System</h1>
-    <p><strong>By:</strong>Prabhala Sai Sirisha Devi</p>
-    <p><strong>Department/College:</strong> CSE - Honors, KL Deemed to be University</p>
-   
-
-    <section class="fade-in-section">
-      <h2>Abstract</h2>
-      <ul>
-        <li data-emoji="🤖">The project aims to develop a smart attendance system using AI.</li>
-        <li data-emoji="🧑‍🤝‍🧑">Combines face recognition (Multi-frames), motion analysis (walking pattern).</li>
-        <li data-emoji="💾">Data is stored securely with offline support using cache-like memory.</li>
-        <li data-emoji="🛡️">Designed to prevent misuse and increase reliability over existing systems.</li>
-      </ul>
-    </section>
-
-    <section class="fade-in-section">
-      <h2>Objectives</h2>
-      <ul>
-        <li data-emoji="✅">Use ESP32-CAM for face data capture and recognition.</li>
-        <li data-emoji="✅">Sync attendance with Firebase in real time.</li>
-        <li data-emoji="🔄">Fetch data into Django-based web interface for data access & management.</li>
-        <li data-emoji="🧠">Enhance the system by recognizing unique human motion (walking styles).</li>
-        <li data-emoji="📴">Implement offline attendance support using cache-style memory instead of only cloud or physical memory.</li>
-        <li data-emoji="🔐">Prevent misuse through multi-factor validation (gait-based + face + on-premise device).</li>
-      </ul>
-    </section>
-
-    <section class="fade-in-section">
-      <h2>Problems in Current Systems (Govt of AP & External Devices)</h2>
-      <ul>
-        <li data-emoji="📱">Smartphone misuse: Time/date manipulation, tech illiteracy.</li>
-        <li data-emoji="🖐️">Biometric spoofing: Latex fingers, proxy attendance.</li>
-        <li data-emoji="💻">External devices: Expensive, fixed, not dynamic.</li>
-        <li data-emoji="📡">No true offline support: Delayed syncing, not real-time.</li>
-        <li data-emoji="🧍">Static face data: Cannot dynamically update face DB remotely.</li>
-        <li data-emoji="🤳">No liveness check or motion validation in most systems.</li>
-      </ul>
-    </section>
-
-    <section class="fade-in-section">
-      <h2>Current Progress</h2>
-      <ul>
-        <li data-emoji="✅">ESP32-CAM captures and recognizes faces.</li>
-        <li data-emoji="✅">Attendance marked with name + time in Firebase.</li>
-        <li data-emoji="✅">Web app shows attendance data from Firebase.</li>
-        <li data-emoji="⚠️">Face data is static – stored locally, not in Firebase.</li>
-        <li data-emoji="⚠️">Offline face recognition not possible due to ESP32 dependency on Wi-Fi.</li>
-      </ul>
-    </section>
-
-    <section class="fade-in-section">
-      <h2>Planned Solutions</h2>
-      <ul>
-        <li data-emoji="🧠">Gait – based recognition (walking patterns) & Multi-frame Face recognition to enhance uniqueness & accuracy.
-</li>
-        <li data-emoji="🗃️">Offline cache memory mechanism to store attendance temporarily until sync.</li>
-      
-        <li data-emoji="🌐">Admins can upload facial data dynamically to Firebase for comparison.</li>
-      </ul>
-    </section>
-
-    <section class="fade-in-section">
-      <h2>Conclusion</h2>
-      <ul>
-        <li data-emoji="🎯">Project aims to build a more secure, smart, accurate and misuse-proof attendance system.</li>
-        <li data-emoji="🔗">Combines face + motion + offline support to overcome current limitations.</li>
-        <li data-emoji="🚀">Early progress is complete; next stage will involve gesture recognition model and offline data handling.</li>
-      </ul>
-    </section>
+    <h1>📚 Sirisha's Notes & Projects</h1>
+    <ul>
+      <li><a href="sql-notes.html">💾 SQL Notes</a></li>
+      <li><a href="attendance-project.html">🤖 AI Attendance System Documentation</a></li>
+      <li><a href="other-project.html">🛠 Other Project</a></li>
+    </ul>
   </main>
-
-<script>
-  // IntersectionObserver for fade effect on scroll
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if(entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.15 });
-  document.querySelectorAll('.fade-in-section').forEach(section => {
-    observer.observe(section);
-  });
-</script>
-
 </body>
 </html>
